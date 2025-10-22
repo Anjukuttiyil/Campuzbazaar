@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - CampusBazaaR</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Custom navbar styling */
+        .navbar {
+            background: linear-gradient(135deg, #4e73df, #1cc88a); /* Example gradient */
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white !important;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            transition: all 0.3s ease;
+            margin: 0 0.5rem;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: white !important;
+            transform: translateY(-2px);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Centering the main container */
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh; /* Adjust for smaller height */
+            padding-top: 3rem; /* Adjust for navbar height */
+        }
+
+        /* Flex layout for equal height on image and form containers */
+        .image-container, .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Image container adjustments */
+        .image-container {
+            height: 400px; /* Set a fixed height for the image */
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure the image covers the container without stretching */
+        }
+
+        /* Form container with reduced height */
+        .form-container {
+            height: 400px; /* Set a fixed height for the form */
+            width: 100%;
+            max-width: 400px; /* Compress width */
+        }
+
+        /* Make form background cover the full container height */
+        .form-container .bg-white {
+            height: 100%;
+        }
+
+        /* Reduced padding and font size for the alert box */
+        .alert-box {
+            padding: 0.5rem 1rem; /* Reduced padding */
+            font-size: 0.875rem; /* Smaller font size */
+            line-height: 1.25rem;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-r from-white-500 to-purple-500">
+    <!-- Navbar (with custom styles) -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" href="#"><i class="fas fa-store mr-2"></i>CampusBazaaR</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="signup.html"><i class="fas fa-info-circle mr-1"></i>Sign up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html"><i class="fas fa-sign-out-alt mr-1"></i>Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="main-container">
+        <div class="container-fluid">
+            <div class="row no-gutters justify-content-center align-items-center" style="height: 100%;">
+                <!-- Image Section (Left Side) -->
+                <div class="col-lg-4 image-container mb-4 SS mb-lg-0">
+                    <img src="view.jpg" alt="CampusBazaaR" class="img-fluid">
+                </div>
+
+                <!-- Login Form Section (Right Side) -->
+                <div class="col-lg-6 form-container">
+                    <div class="bg-white rounded-lg shadow-md p-6 w-full">
+                        <h2 class="text-2xl font-bold mb-4 text-center">Login</h2>
+
+                        <!-- Alert for messages -->
+                        <?php
+                        if (isset($_GET['error'])) {
+                            echo '<div class="alert alert-danger">' . htmlspecialchars($_GET['error']) . '</div>';
+                        }
+                        if (isset($_GET['success'])) {
+                            echo '<div class="alert alert-success">' . htmlspecialchars($_GET['success']) . '</div>';
+                        }
+                        ?>
+
+                        <form action="login.php" method="POST">
+                            <div>
+                                <label for="email" class="block font-medium text-gray-700 mb-1">Email</label>
+                                <input type="email" name="email" id="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                            </div>
+                            <div>
+                                <label for="password" class="block font-medium text-gray-700 mb-1">Password</label>
+                                <input type="password" name="password" id="password" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                            </div>
+                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 w-full">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
