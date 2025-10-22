@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+git add .<!DOCTYPE HTML>
 <html>
 <head>
     <meta charset="utf-8" />
